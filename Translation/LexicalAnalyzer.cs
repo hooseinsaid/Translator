@@ -3,13 +3,24 @@ using System.Collections.Generic;
 
 namespace Translation
 {
-    class LexicalAnalyzer
+    public static class LexicalAnalyzer
     {
+        private static List<Keyword> Keywords;
+        private static int KeyWordPointer;
+        public static Lexems currentLexem;
+        public static string currentName;
+        
         public enum Lexems
         {
-            None,Name,Number,Begin,End,If,Then,Multiplication,Division,Plus,Equal,
-            Less,LessOrEqual,Semi,Assign,LesfBracket,EOF,Divde,Minus,RightBracket,
-            Seperator, Operator,Comma,DataType
+            Name,Number,Begin,End,If,Then,Multiplication,Plus,Equal,
+            Less,LessOrEqual,Greater,GreaterOrEqual,Semi,Assign,LesfBracket,EndOfF,Division,Minus,RightBracket,
+            Seperator, Operator,Comma,DataType,
+            Conjuction,
+            Disjunction,
+            ExcMark,
+            For,
+            While,
+            As
         }
 
         private struct Keyword
@@ -17,10 +28,9 @@ namespace Translation
             public string word;
             public Lexems lex;
         }
-        private readonly List<Keyword> Keywords;
-        private readonly int KeyWordPointer;
+        
 
-        private void AddKeyWord(string Keyword,Lexems lexem)
+        public static void AddKeyWord(string Keyword,Lexems lexem)
         {
             Keyword kw = new Keyword
             {
@@ -29,44 +39,36 @@ namespace Translation
             Keywords.Add(kw);
         }
 
-        private Lexems RecievedKeyWord(string keyword)
+        public static Lexems GetKeyWord(string key)
         {
-            for (int i = KeyWordPointer - 1; i >= 0; i--)
-            {
-                if (Keywords[KeyWordPointer].word==keyword)
-                {
-                    return Keywords[KeyWordPointer].lex;
-                }
-            }
+            foreach (Keyword keyword in Keywords)
+                if (keyword.word.ToLower().Equals(key.ToLower()))
+                    return keyword.lex;
             return Lexems.Name;
         }
-        public Lexems currentLexem;
-        public string currentName;
-
-
-        private void CheckNextLexems()
+        public static void ParseNextLexem()
         {
-            while (Reader.CrSymbol==' ')
+            while (Reader.CurSymbol==' ')
             {
                 Reader.ReadNextSymbol();
-            } 
-            if (char.IsLetter((char)Reader.CrSymbol))
-            {
-                
             }
-            else if (char.IsDigit((char)Reader.CrSymbol))
+            if (Char.IsLetter((char)Reader.CurSymbol))
             {
-
+                ParseID();
             }
-            else if (Reader.CrSymbol=='\n')
+            else if (Char.IsDigit((char)Reader.CurSymbol))
+            {
+                ParseNumber();
+            }
+            else if (Reader.CurSymbol == '\n')
             {
                 Reader.ReadNextSymbol();
                 currentLexem = Lexems.Seperator;
             }
-            else if (Reader.CrSymbol=='<')
+            else if (Reader.CurSymbol == '<')
             {
                 Reader.ReadNextSymbol();
-                if (Reader.CrSymbol == '=')
+                if (Reader.CurSymbol == '=')
                 {
                     Reader.ReadNextSymbol();
                     currentLexem = Lexems.LessOrEqual;
@@ -74,25 +76,112 @@ namespace Translation
                 else
                     currentLexem = Lexems.Less;
             }
-            else if (Reader.CrSymbol=='+')
+            else if (Reader.CurSymbol == '+')
             {
                 Reader.ReadNextSymbol();
                 currentLexem = Lexems.Plus;
             }
+            else if (Reader.CurSymbol == '-')
+            {
+                Reader.ReadNextSymbol();
+                currentLexem = Lexems.Minus;
+            }
+            else if (Reader.CurSymbol == '*')
+            {
+                Reader.ReadNextSymbol();
+                currentLexem = Lexems.Multiplication;
+            }
+            else if (Reader.CurSymbol == '/')
+            {
+                Reader.ReadNextSymbol();
+                currentLexem = Lexems.Division;
+            }
+            else if (Reader.CurSymbol == '>')
+            {
+                Reader.ReadNextSymbol();
+                if (Reader.CurSymbol == '=')
+                {
+                    Reader.ReadNextSymbol();
+                    currentLexem = Lexems.GreaterOrEqual;
+                }
+                else
+                    currentLexem = Lexems.Greater;
+            }
+            else if (Reader.CurSymbol == '(')
+            {
+                Reader.ReadNextSymbol();
+                currentLexem = Lexems.LesfBracket;
+            }
+            else if (Reader.CurSymbol == ')')
+            {
+                Reader.ReadNextSymbol();
+                currentLexem = Lexems.RightBracket;
+            }
+            else if (Reader.CurSymbol==',')
+            {
+                currentLexem = Lexems.Comma;
+            }
+            else if (Reader.CurSymbol == ';')
+            {
+                currentLexem = Lexems.Semi;
+            }
+            else if (Reader.CurSymbol == '&')
+            {
+                currentLexem = Lexems.Conjuction;
+            }
+            else if (Reader.CurSymbol == '|')
+            {
+                currentLexem = Lexems.Disjunction;
+            }
+            else if (Reader.CurSymbol == '!')
+            {
+                currentLexem = Lexems.ExcMark;
+            }
+            else if (Reader.CurSymbol == 0)
+            {
+                currentLexem = Lexems.EndOfF;
+            }
+            else
+                throw new Exception("Unknown Symbol");
+           
         }
 
-        private void CheckID()
+        public static void ParseID()
         {
             string ID="";
             do
             {
-                ID += Reader.CrSymbol;
+                ID += (char)Reader.CurSymbol;
                 Reader.ReadNextSymbol();
             }
-            while (char.IsLetter((char)Reader.CrSymbol));
+            while (char.IsLetter((char)Reader.CurSymbol));
             currentName = ID;
-            currentLexem = RecievedKeyWord(ID);
+            currentLexem = GetKeyWord(ID);
 
+        }
+        public static void ParseNumber()
+        {
+            string Num = "";
+            do
+            {
+                Num += Reader.CurSymbol;
+                Reader.ReadNextSymbol();
+            } while (char.IsDigit((char)Reader.CurSymbol));
+            currentName = Num;
+            currentLexem = Lexems.Number;
+        }
+        public static void Initialize()
+        {
+            Keywords = new List<Keyword>();
+            AddKeyWord("begin", Lexems.Begin);
+            AddKeyWord("int", Lexems.DataType);
+            AddKeyWord("end", Lexems.End);
+            AddKeyWord("then", Lexems.Then);
+            AddKeyWord("do", Lexems.Name);
+            AddKeyWord("for", Lexems.For);
+            AddKeyWord("While", Lexems.While);
+            AddKeyWord("as", Lexems.As);
+            ParseNextLexem();
         }
     }
 }
