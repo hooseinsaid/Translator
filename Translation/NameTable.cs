@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Translation
 {
-    class Class1
+    class NameTable
     {
+
     }
 }
