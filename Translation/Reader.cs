@@ -5,21 +5,21 @@ namespace Translation
 {
     public class Reader
     {
-        public static int NLines=0, PosSimLine=0, CrSymbol=0;
+        public static int NLines=0, PosSimLine=0, CurSymbol=0;
         static StreamReader reader;
         public static void  ReadNextSymbol()
         {
-            CrSymbol = reader.Read();
-            if (CrSymbol == -1)
+            CurSymbol = reader.Read();
+            if (CurSymbol == -1)
             {
-                CrSymbol = 0;
+                CurSymbol = 0;
             }
-            else if (CrSymbol == '\n')
+            else if (CurSymbol == '\n')
             {
                 NLines++;
                 PosSimLine = 0;
             }
-            else if (CrSymbol == '\r' || CrSymbol == '\t')
+            else if (CurSymbol == '\r' || CurSymbol == '\t')
             {
                 ReadNextSymbol();
             }
