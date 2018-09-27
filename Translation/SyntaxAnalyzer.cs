@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Translation
 {
-    class SyntaxAnalyzer
+   public static class SyntaxAnalyzer
     {
+
     }
 }
