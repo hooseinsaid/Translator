@@ -12,7 +12,7 @@ namespace Translation
         
         public enum Lexems
         {
-            Name,Number,Begin,End,If,Then,Multiplication,Plus,Equal,
+            None,Name,Number,Begin,End,If,Then,Multiplication,Plus,Equal,
             Less,LessOrEqual,Greater,GreaterOrEqual,Semi,Assign,LesfBracket,EndOfF,Division,Minus,RightBracket,
             Seperator, Operator,Comma,DataType,
             Conjuction,
