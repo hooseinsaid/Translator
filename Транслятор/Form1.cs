@@ -31,7 +31,8 @@ namespace Транслятор
                     Initialize();
                     while (currentLexem != Lexems.EndOfF)
                     {
-                        input_text.AppendText((char)currentLexem + "");
+
+                        input_text.AppendText(currentLexem.ToString() + "");
                         ParseNextLexem();
                     }
                     var Code = File.ReadAllText(openFile.FileName);
