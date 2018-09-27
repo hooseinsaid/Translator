@@ -29,7 +29,7 @@ namespace Транслятор
                     //    ReadNextSymbol();
                     //}
                     Initialize();
-                    while (currentLexem != Lexems.EndOfF)
+                    while (currentLexem != Lexems.EOF)
                     {
 
                         input_text.AppendText(currentLexem.ToString() + "");
