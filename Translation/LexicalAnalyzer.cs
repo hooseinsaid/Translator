@@ -20,7 +20,8 @@ namespace Translation
             ExcMark,
             For,
             While,
-            As
+            As,
+            Identificator
         }
 
         private struct Keyword
