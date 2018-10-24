@@ -21,7 +21,8 @@ namespace Translation
             For,
             While,
             As,
-            Identificator
+            Identificator,
+            Var
         }
 
         private struct Keyword
@@ -45,7 +46,7 @@ namespace Translation
             foreach (Keyword keyword in Keywords)
                 if (keyword.word.ToLower().Equals(key.ToLower()))
                     return keyword.lex;
-            return Lexems.Name;
+            return Lexems.Identificator;
         }
         public static void ParseNextLexem()
         {
@@ -121,30 +122,35 @@ namespace Translation
             else if (Reader.CurSymbol==',')
             {
                 currentLexem = Lexems.Comma;
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == ';')
             {
                 currentLexem = Lexems.Semi;
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '&')
             {
                 currentLexem = Lexems.Conjuction;
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '|')
             {
                 currentLexem = Lexems.Disjunction;
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '!')
             {
                 currentLexem = Lexems.ExcMark;
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == 0)
             {
                 currentLexem = Lexems.EndOfF;
             }
             else
-                throw new Exception("Unknown Symbol");
-           
+                throw new Exception("Unknown Symbol"+Reader.CurSymbol.ToString());
+            Reader.ReadNextSymbol();
         }
 
         public static void ParseID()
@@ -158,7 +164,6 @@ namespace Translation
             while (char.IsLetter((char)Reader.CurSymbol));
             currentName = ID;
             currentLexem = GetKeyWord(ID);
-
         }
         public static void ParseNumber()
         {
@@ -181,8 +186,12 @@ namespace Translation
             AddKeyWord("do", Lexems.Name);
             AddKeyWord("for", Lexems.For);
             AddKeyWord("While", Lexems.While);
-            AddKeyWord("as", Lexems.As);
+            AddKeyWord("as", Lexems.As);            
+            AddKeyWord("var", Lexems.Var);   
+            AddKeyWord("integer",Lexems.DataType);         
+            AddKeyWord("if",Lexems.If);          
             ParseNextLexem();
+
         }
     }
 }
