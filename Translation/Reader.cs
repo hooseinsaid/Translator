@@ -13,15 +13,16 @@ namespace Translation
             if (CurSymbol==char.MaxValue)
             {
                 CurSymbol = 0;
+                return;
             }
             else if (CurSymbol == '\n')
             {
                 NLines++;
-                PosSimLine = 0;
+                return;
             }
             else if (CurSymbol == '\r' || CurSymbol == '\t')
             {
-                ReadNextSymbol();
+                PosSimLine = 0;
             }
             else
                 PosSimLine++;
