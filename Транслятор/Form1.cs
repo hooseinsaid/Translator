@@ -23,9 +23,9 @@ namespace Транслятор
                 if (openFile.ShowDialog() == DialogResult.OK)
                     {
                     Initialize(openFile.FileName);
-                    //while (CrSymbol != 0)
+                    //while (CurSymbol != 0)
                     //{
-                    //    input_text.AppendText((char)CrSymbol + "");
+                    //    input_text.AppendText((char)CurSymbol + "");
                     //    ReadNextSymbol();
                     //}
                     Initialize();
@@ -34,15 +34,16 @@ namespace Транслятор
                         input_text.AppendText((char)currentLexem + "");
                         ParseNextLexem();
                     }
-                    var Code = File.ReadAllText(openFile.FileName);
-                    input_text.Text=Code;
-                    Initialize();
-                   
+                    Translation.Reader.Close();
+                    //var Code = File.ReadAllText(openFile.FileName);
+                    //input_text.Text=Code;
+                    //Initialize();
+
                 }
             }
             catch (System.Exception s)
             {
-                richTextBox1.Text=s+ " ";
+                richTextBoxOutput.Text=s+ " ";
             }
 
         }

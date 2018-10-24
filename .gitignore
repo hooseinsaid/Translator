@@ -17,6 +17,14 @@
 *.lock
 *.vs/Translation/lut/0/i/Test/Debug/
 Транслятор/bin/*
-*Транслятор/bin/Debug/Транслятор.exe
+*/Debug/*
 *Транслятор/obj/*
-Транслятор/obj/Debug/Транслятор.csproj.GenerateResource.cache
+*Test/obj/*
+*/Translation/obj/*
+/bin/*
+*.vs/*
+Translation/obj/Debug/netstandard2.0/Translation.dll
+Translation/obj/Debug/netstandard2.0/Translation.pdb
+*/Транслятор/bin/Debug/*
+bin.*
+*ConsoleApplication1/obj/*

@@ -34,7 +34,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Результат = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             this.Исходный_код = new System.Windows.Forms.GroupBox();
             this.input_text = new System.Windows.Forms.RichTextBox();
             this.Состояния_компиляции = new System.Windows.Forms.GroupBox();
@@ -94,26 +94,26 @@
             this.Результат.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Результат.AutoSize = true;
-            this.Результат.Controls.Add(this.richTextBox1);
+            this.Результат.Controls.Add(this.richTextBoxOutput);
             this.Результат.Location = new System.Drawing.Point(392, 63);
-            this.Результат.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Результат.Margin = new System.Windows.Forms.Padding(4);
             this.Результат.Name = "Результат";
-            this.Результат.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Результат.Padding = new System.Windows.Forms.Padding(4);
             this.Результат.Size = new System.Drawing.Size(360, 385);
             this.Результат.TabIndex = 1;
             this.Результат.TabStop = false;
             this.Результат.Text = "Результат";
             // 
-            // richTextBox1
+            // richTextBoxOutput
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(4, 19);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(352, 362);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxOutput.Location = new System.Drawing.Point(4, 19);
+            this.richTextBoxOutput.Margin = new System.Windows.Forms.Padding(4);
+            this.richTextBoxOutput.Name = "richTextBoxOutput";
+            this.richTextBoxOutput.ReadOnly = true;
+            this.richTextBoxOutput.Size = new System.Drawing.Size(352, 362);
+            this.richTextBoxOutput.TabIndex = 0;
+            this.richTextBoxOutput.Text = "";
             // 
             // Исходный_код
             // 
@@ -123,9 +123,9 @@
             this.Исходный_код.AutoSize = true;
             this.Исходный_код.Controls.Add(this.input_text);
             this.Исходный_код.Location = new System.Drawing.Point(16, 63);
-            this.Исходный_код.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Исходный_код.Margin = new System.Windows.Forms.Padding(4);
             this.Исходный_код.Name = "Исходный_код";
-            this.Исходный_код.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Исходный_код.Padding = new System.Windows.Forms.Padding(4);
             this.Исходный_код.Size = new System.Drawing.Size(355, 385);
             this.Исходный_код.TabIndex = 2;
             this.Исходный_код.TabStop = false;
@@ -134,8 +134,9 @@
             // input_text
             // 
             this.input_text.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.input_text.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.input_text.Location = new System.Drawing.Point(4, 19);
-            this.input_text.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_text.Margin = new System.Windows.Forms.Padding(4);
             this.input_text.Name = "input_text";
             this.input_text.Size = new System.Drawing.Size(347, 362);
             this.input_text.TabIndex = 1;
@@ -149,9 +150,9 @@
             this.Состояния_компиляции.AutoSize = true;
             this.Состояния_компиляции.Controls.Add(this.richTextBox3);
             this.Состояния_компиляции.Location = new System.Drawing.Point(16, 469);
-            this.Состояния_компиляции.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Состояния_компиляции.Margin = new System.Windows.Forms.Padding(4);
             this.Состояния_компиляции.Name = "Состояния_компиляции";
-            this.Состояния_компиляции.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Состояния_компиляции.Padding = new System.Windows.Forms.Padding(4);
             this.Состояния_компиляции.Size = new System.Drawing.Size(736, 220);
             this.Состояния_компиляции.TabIndex = 2;
             this.Состояния_компиляции.TabStop = false;
@@ -161,7 +162,7 @@
             // 
             this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox3.Location = new System.Drawing.Point(4, 19);
-            this.richTextBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBox3.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.ReadOnly = true;
             this.richTextBox3.Size = new System.Drawing.Size(728, 197);
@@ -191,7 +192,7 @@
             this.Controls.Add(this.Результат);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
@@ -212,7 +213,7 @@
         private System.Windows.Forms.GroupBox Результат;
         private System.Windows.Forms.GroupBox Исходный_код;
         private System.Windows.Forms.GroupBox Состояния_компиляции;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxOutput;
         private System.Windows.Forms.RichTextBox input_text;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
