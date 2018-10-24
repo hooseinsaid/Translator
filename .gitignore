@@ -2,4 +2,21 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Translation
+*.sln
+*.csproj
+*.exe
+*.pdb
+*.cache
+*.manifest
+*.dll
+*.dtbcache
+*.lutdata
+*.lut
+*json
+*.config
+*.lock
+*.vs/Translation/lut/0/i/Test/Debug/
+Транслятор/bin/*
+*Транслятор/bin/Debug/Транслятор.exe
+*Транслятор/obj/*
+Транслятор/obj/Debug/Транслятор.csproj.GenerateResource.cache
