@@ -9,8 +9,8 @@ namespace Translation
         static StreamReader reader;
         public static void  ReadNextSymbol()
         {
-            CurSymbol = reader.Read();
-            if (CurSymbol == -1)
+            CurSymbol = (char)reader.Read();
+            if (CurSymbol==char.MaxValue)
             {
                 CurSymbol = 0;
             }
@@ -29,13 +29,22 @@ namespace Translation
         }
         public static  void Initialize(string filepath)
         {
-            if(File.Exists(filepath))
+            try
             {
-                reader = new StreamReader(filepath);
-                NLines = 1;
-                PosSimLine = 0;
-                ReadNextSymbol();
+                if (File.Exists(filepath))
+                {
+                    reader = new StreamReader(filepath);
+                    NLines = 1;
+                    PosSimLine = 0;
+                    ReadNextSymbol();
+                }
             }
+            catch
+            {
+
+                throw new FileNotFoundException("File not found ");
+            }
+            
         }
         public  static void Close()
         {
