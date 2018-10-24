@@ -12,8 +12,8 @@ namespace Translation
         
         public enum Lexems
         {
-            Name,Number,Begin,End,If,Then,Multiplication,Plus,Equal,
-            Less,LessOrEqual,Greater,GreaterOrEqual,Semi,Assign,LesfBracket,EndOfF,Division,Minus,RightBracket,
+            Do,Number,Begin,End,If,Then,Multiplication,Plus,Equal,
+            Less,LessOrEqual,Greater,GreaterOrEqual,EndOfOPeration,Assign,LesfBracket,EndOfF,Division,Minus,RightBracket,
             Seperator, Operator,Comma,DataType,
             Conjuction,
             Disjunction,
@@ -22,7 +22,10 @@ namespace Translation
             While,
             As,
             Identificator,
-            Var
+            Var,
+            EndFor,
+            Print,
+            To
         }
 
         private struct Keyword
@@ -62,95 +65,126 @@ namespace Translation
             {
                 ParseNumber();
             }
-            else if (Reader.CurSymbol == '\n')
+            else if (Reader.CurSymbol=='\r'||Reader.CurSymbol=='\n')
             {
                 Reader.ReadNextSymbol();
-                currentLexem = Lexems.Seperator;
+                ParseNextLexem();
             }
             else if (Reader.CurSymbol == '<')
             {
+                //currentLexem = Lexems.Less;
                 Reader.ReadNextSymbol();
                 if (Reader.CurSymbol == '=')
                 {
-                    Reader.ReadNextSymbol();
                     currentLexem = Lexems.LessOrEqual;
+                    currentName = "<=";
+                    Reader.ReadNextSymbol();
                 }
                 else
-                    currentLexem = Lexems.Less;
+                { currentName = "<"; currentLexem = Lexems.Less;
+                    Reader.ReadNextSymbol();
+
+                }
+                    
             }
             else if (Reader.CurSymbol == '+')
             {
-                Reader.ReadNextSymbol();
                 currentLexem = Lexems.Plus;
+                currentName = "+";
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '-')
             {
-                Reader.ReadNextSymbol();
                 currentLexem = Lexems.Minus;
+                currentName = "-";
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '*')
             {
-                Reader.ReadNextSymbol();
                 currentLexem = Lexems.Multiplication;
+                currentName = "*";
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '/')
             {
-                Reader.ReadNextSymbol();
                 currentLexem = Lexems.Division;
+                currentName = "/";
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '>')
             {
-                Reader.ReadNextSymbol();
+                
                 if (Reader.CurSymbol == '=')
                 {
-                    Reader.ReadNextSymbol();
                     currentLexem = Lexems.GreaterOrEqual;
+                    currentName = ">=";
+                    Reader.ReadNextSymbol();
                 }
                 else
+                {
+
                     currentLexem = Lexems.Greater;
+                    currentName = ">";
+                    Reader.ReadNextSymbol();
+                }
             }
             else if (Reader.CurSymbol == '(')
             {
-                Reader.ReadNextSymbol();
                 currentLexem = Lexems.LesfBracket;
+                currentName = "(";
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == ')')
             {
-                Reader.ReadNextSymbol();
                 currentLexem = Lexems.RightBracket;
+                currentName = ")";
+                Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol==',')
             {
                 currentLexem = Lexems.Comma;
+                currentName = ",";
                 Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == ';')
             {
-                currentLexem = Lexems.Semi;
+                currentLexem = Lexems.EndOfOPeration;
+                currentName = ";";
                 Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '&')
             {
                 currentLexem = Lexems.Conjuction;
+                currentName = "&";
                 Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '|')
             {
                 currentLexem = Lexems.Disjunction;
+                currentName = "|";
                 Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == '!')
             {
                 currentLexem = Lexems.ExcMark;
+                currentName = "!";
                 Reader.ReadNextSymbol();
             }
             else if (Reader.CurSymbol == 0)
             {
                 currentLexem = Lexems.EndOfF;
             }
+            else if (Reader.CurSymbol==':')
+            {
+                Reader.ReadNextSymbol();
+                if (Reader.CurSymbol == '=') {
+                    currentLexem = Lexems.Assign;
+                    currentName = ":" + (char)Reader.CurSymbol;
+                    Reader.ReadNextSymbol();
+                }
+            }
             else
-                throw new Exception("Unknown Symbol"+Reader.CurSymbol.ToString());
-            Reader.ReadNextSymbol();
+                throw new Exception("Unknown Symbol"+(char)Reader.CurSymbol);
         }
 
         public static void ParseID()
@@ -170,7 +204,7 @@ namespace Translation
             string Num = "";
             do
             {
-                Num += Reader.CurSymbol;
+                Num += (char)Reader.CurSymbol;
                 Reader.ReadNextSymbol();
             } while (char.IsDigit((char)Reader.CurSymbol));
             currentName = Num;
@@ -183,14 +217,17 @@ namespace Translation
             AddKeyWord("int", Lexems.DataType);
             AddKeyWord("end", Lexems.End);
             AddKeyWord("then", Lexems.Then);
-            AddKeyWord("do", Lexems.Name);
+            AddKeyWord("do", Lexems.Do);
+            AddKeyWord("to", Lexems.To);
             AddKeyWord("for", Lexems.For);
             AddKeyWord("While", Lexems.While);
             AddKeyWord("as", Lexems.As);            
-            AddKeyWord("var", Lexems.Var);   
-            AddKeyWord("integer",Lexems.DataType);         
-            AddKeyWord("if",Lexems.If);          
-            ParseNextLexem();
+            AddKeyWord("var", Lexems.DataType);   
+            AddKeyWord("integer",Lexems.DataType);
+            AddKeyWord("endfor", Lexems.EndFor);
+            AddKeyWord("if",Lexems.If);
+            AddKeyWord("print", Lexems.Print);
+            //ParseNextLexem();
 
         }
     }
