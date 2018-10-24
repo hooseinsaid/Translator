@@ -28,3 +28,4 @@ Translation/obj/Debug/netstandard2.0/Translation.pdb
 */Транслятор/bin/Debug/*
 bin.*
 *ConsoleApplication1/obj/*
+Translation/SyntaxAnalyzer.cs
