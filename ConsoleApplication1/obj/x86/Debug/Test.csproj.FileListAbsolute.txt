@@ -1,0 +1,7 @@
+D:\visual studio\Translation\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\visual studio\Translation\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\visual studio\Translation\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\visual studio\Translation\ConsoleApplication1\bin\Debug\Translation.dll
+D:\visual studio\Translation\ConsoleApplication1\bin\Debug\Translation.pdb
+D:\visual studio\Translation\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+D:\visual studio\Translation\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
