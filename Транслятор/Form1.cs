@@ -9,7 +9,6 @@ namespace Транслятор
 {
     public partial class Form1 : Form
     {
-
         public Form1()
         {
             InitializeComponent();
@@ -29,22 +28,22 @@ namespace Транслятор
                     //    input_text.AppendText((char)CurSymbol + "");
                     //    ReadNextSymbol();
                     //}
-                    input_text.AppendText(System.Drawing.Color.Red, "the end of Reader class");
                     Initialize();
                     while (currentLexem != Lexems.EndOfF)
                     {
                         input_text.AppendText((char)currentLexem + "");
                         ParseNextLexem();
                     }
-                    var Code = File.ReadAllText(openFile.FileName);
+                    Translation.Reader.Close();
+                    //var Code = File.ReadAllText(openFile.FileName);
                     //input_text.Text=Code;
-                    Initialize();
-                   
+                    //Initialize();
+
                 }
             }
             catch (System.Exception s)
             {
-                richTextBox1.Text=s+ " ";
+                richTextBoxOutput.Text=s+ " ";
             }
 
         }
@@ -59,27 +58,14 @@ namespace Транслятор
                 {
                     File.WriteAllText(openFile.FileName, input_text.Text);
                     MessageBox.Show("Saved !");
-                }
-                 else if (dialogResult == DialogResult.No)
-                 {
+            }
+            else if (dialogResult == DialogResult.No)
+            {
                 openFile.Reset();
                 Close();
-                 }
             }
-
         }
-        
-    }
-    public static class RichTextBoxExtensions
-    {
-        public static void AppendText(this RichTextBox box, System.Drawing.Color color, string text)
-        {
-            box.SelectionStart = box.TextLength;
-            box.SelectionLength = 0;
 
-            box.SelectionColor = color;
-            box.AppendText(text);
-            box.SelectionColor = box.ForeColor;
         }
     }
 }

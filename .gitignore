@@ -2,4 +2,30 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Translation
+*.sln
+*.csproj
+*.exe
+*.pdb
+*.cache
+*.manifest
+*.dll
+*.dtbcache
+*.lutdata
+*.lut
+*json
+*.config
+*.lock
+*.vs/Translation/lut/0/i/Test/Debug/
+Транслятор/bin/*
+*/Debug/*
+*Транслятор/obj/*
+*Test/obj/*
+*/Translation/obj/*
+/bin/*
+*.vs/*
+Translation/obj/Debug/netstandard2.0/Translation.dll
+Translation/obj/Debug/netstandard2.0/Translation.pdb
+*/Транслятор/bin/Debug/*
+bin.*
+*ConsoleApplication1/obj/*
+Translation/SyntaxAnalyzer.cs
