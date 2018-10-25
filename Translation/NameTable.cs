@@ -4,25 +4,26 @@ using System.Text;
 
 namespace Translation
 {
+    public enum TCat
+    {
+        Const, Var, Type
+    };
+    public enum TType
+    {
+        None, Int, Bool
+    };
+    public struct Identifier
+    {
+        public string name;
+        public TCat cat;
+        public TType type;
+    }
+
     public static class NameTable
     {
-        public enum TCat
-        {
-            Const, Var, Type
-        };
-        public enum TType
-        {
-            None, Int, Bool
-        };
-         public  struct Identifier
-        {
-            public string name;
-            public TCat cat;
-            public TType type; 
-        }
+       
 
         public static LinkedList<Identifier> Identifiers = new LinkedList<Identifier>();
-
         public static Identifier  Addidentifier(string name,TCat cat)
         {
             Identifier identifier = new Identifier
@@ -42,5 +43,6 @@ namespace Translation
             }
             return node == null ? new Identifier() : node.Value;
         }
+        
     }
 }
