@@ -6,7 +6,7 @@ namespace Translation
     public static class LexicalAnalyzer
     {
         private static List<Keyword> Keywords;
-        private static int KeyWordPointer;
+        //private static int KeyWordPointer;
         public static Lexems currentLexem;
         public static string currentName;
         
