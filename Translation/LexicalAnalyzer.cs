@@ -185,7 +185,7 @@ namespace Translation
             }
             else
                 throw new Exception("Unknown Symbol"+(char)Reader.CurSymbol);
-        }
+         }
 
         public static void ParseID()
         {
