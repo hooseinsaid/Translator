@@ -23,15 +23,15 @@ namespace Транслятор
                 if (openFile.ShowDialog() == DialogResult.OK)
                     {
                     Initialize(openFile.FileName);
-                    //while (CurSymbol != 0)
-                    //{
-                    //    input_text.AppendText((char)CurSymbol + "");
-                    //    ReadNextSymbol();
-                    //}
+                    while (CurSymbol != 0)
+                    {
+                        input_text.AppendText((char)CurSymbol + "");
+                        ReadNextSymbol();
+                    }
                     Initialize();
                     while (currentLexem != Lexems.EndOfF)
                     {
-                        input_text.AppendText((char)currentLexem + "");
+                        input_text.AppendText(currentLexem + "");
                         ParseNextLexem();
                     }
                     Translation.Reader.Close();
