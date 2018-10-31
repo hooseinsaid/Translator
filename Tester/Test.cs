@@ -8,8 +8,8 @@ namespace Translation
         static void Main(string[] args)
         {
            
-          //  LexicalTest();
-            syntaxTest();
+            LexicalTest();
+           // syntaxTest();
         }
 
         private static void syntaxTest()
