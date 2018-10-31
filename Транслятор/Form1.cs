@@ -28,6 +28,8 @@ namespace Транслятор
                         input_text.AppendText((char)CurSymbol + "");
                         ReadNextSymbol();
                     }
+                    Translation.Reader.Close();
+                    Initialize(openFile.FileName);
                     Initialize();
                     while (currentLexem != Lexems.EndOfF)
                     {
