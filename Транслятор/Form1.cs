@@ -23,12 +23,12 @@ namespace Транслятор
                 if (openFile.ShowDialog() == DialogResult.OK)
                     {
                     Initialize(openFile.FileName);
-                    while (CurSymbol != 0)
-                    {
-                        input_text.AppendText((char)CurSymbol + "");
-                        ReadNextSymbol();
-                    }
-                    Translation.Reader.Close();
+                    //while (CurSymbol != 0)
+                    //{
+                    //    input_text.AppendText((char)CurSymbol + "");
+                    //    ReadNextSymbol();
+                    //}
+                    //Translation.Reader.Close();
                     //Initialize();
                     //while (currentLexem != Lexems.EndOfF)
                     //{
@@ -36,8 +36,8 @@ namespace Транслятор
                     //    ParseNextLexem();
                     //}
                     //Translation.Reader.Close();
-                    //var Code = File.ReadAllText(openFile.FileName);
-                    //input_text.Text=Code;
+                    var Code = File.ReadAllText(openFile.FileName);
+                    input_text.Text=Code;
                     //Initialize();
 
                     Initialize(openFile.FileName);
@@ -52,7 +52,7 @@ namespace Транслятор
                         OutputRicxhBox.AppendText(("String Line : "+ NLines + "   "+ lexlemename + "  ->  "+ lex.ToString()+"\n"));
 
                     }
-                    Console.ReadLine();
+                    Translation.Reader.Close();
                 }
             }
             catch (System.Exception s)
@@ -70,7 +70,7 @@ namespace Транслятор
                 DialogResult dialogResult = MessageBox.Show("Save file ?", "Save", MessageBoxButtons.YesNoCancel);
                 if (dialogResult == DialogResult.Yes) 
                 {
-                    File.WriteAllText(openFile.FileName+"0", input_text.Text);
+                    File.WriteAllText(openFile.FileName, input_text.Text);
                     MessageBox.Show("Saved !");
             }
             else if (dialogResult == DialogResult.No)
