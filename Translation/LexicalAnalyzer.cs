@@ -57,11 +57,11 @@ namespace Translation
             {
                 Reader.ReadNextSymbol();
             }
-            if (Char.IsLetter((char)Reader.CurSymbol))
+            if (char.IsLetter((char)Reader.CurSymbol))
             {
                 ParseID();
             }
-            else if (Char.IsDigit((char)Reader.CurSymbol))
+            else if (char.IsDigit((char)Reader.CurSymbol))
             {
                 ParseNumber();
             }
@@ -183,6 +183,7 @@ namespace Translation
                     Reader.ReadNextSymbol();
                 }
             }
+
             else
                 throw new Exception("Unknown Symbol"+(char)Reader.CurSymbol);
         }
