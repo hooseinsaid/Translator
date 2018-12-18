@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Translation
 {
@@ -8,10 +7,12 @@ namespace Translation
     {
         Const, Var, Type
     };
+
     public enum TType
     {
         None, Int, Bool
     };
+
     public struct Identifier
     {
         public string name;
@@ -21,10 +22,9 @@ namespace Translation
 
     public static class NameTable
     {
-       
-
         public static LinkedList<Identifier> Identifiers = new LinkedList<Identifier>();
-        public static Identifier  Addidentifier(string name,TCat cat)
+
+        public static Identifier Addidentifier(string name, TCat cat)
         {
             Identifier identifier = new Identifier
             {
@@ -34,15 +34,26 @@ namespace Translation
             Identifiers.AddLast(identifier);
             return identifier;
         }
+
         public static Identifier SearchByName(string name)
         {
             LinkedListNode<Identifier> node = Identifiers.First;
-            while (node!=null & node.Value.name!=name)
+            try
             {
-                node = node.Next;
+                while (node != null & node.Value.name != name)
+                {
+                    node = node.Next;
+                }
+            }
+            catch (Exception)
+            {
             }
             return node == null ? new Identifier() : node.Value;
         }
-        
+
+        public static void Initialize()
+        {
+            Identifiers = new LinkedList<Identifier>();
+        }
     }
 }
