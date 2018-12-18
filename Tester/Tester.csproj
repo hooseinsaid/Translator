@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="json1.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Translation\Translation.csproj">
