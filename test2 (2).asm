@@ -13,15 +13,21 @@ main proc
 assume cs:code,ds:data,ss:stk
 mov ax,data
 mov ds,ax
-mov ax,2
-push ax
-pop ax
-mov x,ax
 mov ax,3
 push ax
 pop ax
+mov x,ax
+mov ax,10
+push ax
+mov ax,5
+push ax
+pop bx
+pop ax
+sub ax,bx
+push ax
+pop ax
 mov y,ax
-label5:
+label1:
 mov ax,x
 push ax
 mov ax,1
@@ -39,11 +45,11 @@ push ax
 pop ax
 pop bx
 cmp bx, ax
-jg label6
-jmp label5
-label6:
-jmp label5
-label6:
+jg label2
+jmp label1
+label2:
+jmp label1
+label2:
 mov ax,x
 push ax
 mov ax,y

@@ -1,7 +1,7 @@
 data segment para public "data"
-x dw 1
-y dw 1
-z dw 1
+x  dw    1
+y  dw    1
+z  dw    1
 PRINT_BUF DB ' ' DUP(10)
 BUFEND    DB '$'
 data ends
@@ -13,49 +13,47 @@ main proc
 assume cs:code,ds:data,ss:stk
 mov ax,data
 mov ds,ax
-mov ax,2
+mov ax, 2
 push ax
 pop ax
-mov x,ax
-mov ax,3
+mov x, ax
+mov ax, 3
 push ax
 pop ax
-mov y,ax
-label5:
-mov ax,x
+mov y, ax
+label1:
+mov ax, x
 push ax
-mov ax,1
-push ax
-pop bx
-pop ax
-add ax,bx
-push ax
-pop ax
-mov x,ax
-mov ax,x
-push ax
-mov ax,10
+mov ax, 10
 push ax
 pop ax
 pop bx
 cmp bx, ax
-jg label6
-jmp label5
-label6:
-jmp label5
-label6:
-mov ax,x
+jg label2
+mov ax, x
 push ax
-mov ax,y
+mov ax, 1
 push ax
 pop bx
 pop ax
-add ax,bx
+add ax, bx
 push ax
 pop ax
-mov z,ax
+mov x, ax
+jmp label1
+label2:
+mov ax, x
 push ax
-mov ax,z
+mov ax, y
+push ax
+pop bx
+pop ax
+add ax, bx
+push ax
+pop ax
+mov z, ax
+push ax
+mov ax, z
 CALL PRINT
 pop ax
 mov ax,4c00h
