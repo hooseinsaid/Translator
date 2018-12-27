@@ -1,16 +1,16 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Translation
 {
     public class Reader
     {
-        public static int NLines=0, PosSimLine=0, CurSymbol=0;
-        static StreamReader reader;
-        public static void  ReadNextSymbol()
+        public static int NLines = 0, PosSimLine = 0, CurSymbol = 0;
+        private static StreamReader reader;
+
+        public static void ReadNextSymbol()
         {
             CurSymbol = (char)reader.Read();
-            if (CurSymbol==char.MaxValue)
+            if (CurSymbol == char.MaxValue)
             {
                 CurSymbol = 0;
                 return;
@@ -18,6 +18,7 @@ namespace Translation
             else if (CurSymbol == '\n')
             {
                 NLines++;
+                PosSimLine = 0;
                 return;
             }
             else if (CurSymbol == '\r' || CurSymbol == '\t')
@@ -26,9 +27,9 @@ namespace Translation
             }
             else
                 PosSimLine++;
-            
         }
-        public static  void Initialize(string filepath)
+
+        public static void Initialize(string filepath)
         {
             try
             {
@@ -42,12 +43,11 @@ namespace Translation
             }
             catch
             {
-
                 throw new FileNotFoundException("File not found ");
             }
-            
         }
-        public  static void Close()
+
+        public static void Close()
         {
             reader.Close();
         }
