@@ -95,9 +95,9 @@ namespace Транслятор
                         break;
                 }
             }
-            catch (FileNotFoundException exp)
+            catch (Exception exp)
             {
-                MessageBox.Show(exp.Message);
+                richTextBoxError.Text += (exp.Message);
             }
         }
 

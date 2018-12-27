@@ -1,0 +1,14 @@
+int x,y,z;
+begin
+x=2;
+y=3;
+if (y>x) then
+Do
+x=x+1;
+while (x>=10);
+z=x+y;
+else
+z=y-x;
+endif
+print z;
+end
