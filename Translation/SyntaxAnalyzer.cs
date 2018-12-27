@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using static Translation.LexicalAnalyzer;
 
 namespace Translation
@@ -15,7 +16,7 @@ namespace Translation
         public static List<Error> Errors { get; } = new List<Error>();
         public static string currentLabel { get; private set; }
 
-        private static void Error(string ErrorMessage)
+        public static void Error(string ErrorMessage)
         {
             Errors.Add(new Error
             {
@@ -74,6 +75,7 @@ namespace Translation
             CheckLexems(Lexems.Begin);
             ParseInstructionsSequence();
             //  CheckLexems(Lexems.End);
+            //CheckSyntax(Lexems.End);
             CodeGens.DeclareEndmainProcedure();
             CodeGens.DeclarePrintingPrecedure();
             CodeGens.DeclareEndOfCode();
@@ -106,8 +108,8 @@ namespace Translation
             }
             else if (currentLexem == Lexems.Print)
                 ParsePrintInstruction();
-            //else if (currentLexem == Lexems.If)
-            //    ParseBranching();
+            else if (currentLexem == Lexems.If)
+                ParseBranching();
             else if (currentLexem == Lexems.Do)
                 ParseLoop();
         }
@@ -115,15 +117,9 @@ namespace Translation
         private static void ParseInstructionAssignment()
         {
             ParseNextLexem();
-            if (currentLexem == Lexems.Assign)
-            {
-                ParseNextLexem();
-                ParseExpression();
-            }
-            else
-            {
-                Error(" Error need an Assignment symbol");
-            }
+            CheckSyntax(Lexems.Assign);
+            ParseNextLexem();
+            ParseExpression();
         }
 
         private static TType ParseExpression()
@@ -290,26 +286,61 @@ namespace Translation
             return t;
         }
 
-        //public static void ParseBranching()
-        //{
-        //    //CheckLexems(Lexems.If);
-        //    ParseNextLexem();
-        //    ParseExpression();
-        //    CheckLexems(Lexems.Then);
-        //    ParseInstructionsSequence();
-        //    while (currentLexem == Lexems.ElseIf)
-        //    {
-        //        ParseExpression();
-        //        CheckLexems(Lexems.Then);
-        //        ParseInstructionsSequence();
-        //    }
-        //    if (currentLexem == Lexems.Else)
-        //    {
-        //        ParseNextLexem();
-        //        ParseInstructionsSequence();
-        //    }
-        //    CheckLexems(Lexems.EndIf);
-        //}
+        public static void ParseBranching()
+        {
+            //    //CheckLexems(Lexems.If);
+            //    ParseNextLexem();
+            //    ParseExpression();
+            // CodeGens.AddLabel();
+            // string lowlable=CodeGens.GetCurrentLabel();
+            // currentLabel=lowlable;
+
+            //    CheckLexems(Lexems.Then);
+            //    ParseInstructionsSequence();
+            //    while (currentLexem == Lexems.ElseIf)
+            //    {
+            //        ParseExpression();
+            //        CheckLexems(Lexems.Then);
+            //        ParseInstructionsSequence();
+            //    }
+            //    if (currentLexem == Lexems.Else)
+            //    {
+            //        ParseNextLexem();
+            //        ParseInstructionsSequence();
+            //    }
+            //    CheckLexems(Lexems.EndIf);
+            ParseNextLexem();
+            CodeGens.AddLabel();
+            string lowestLabel = CodeGens.GetCurrentLabel();
+            currentLabel = lowestLabel;
+            CodeGens.AddLabel();
+            string exitLabel = CodeGens.GetCurrentLabel();
+            ParseExpression();
+            CheckSyntax(Lexems.Then);
+            ParseInstructionsSequence();
+            CodeGens.AddInstructions("jmp " + exitLabel);
+            while (currentLexem == Lexems.ElseIf)
+            {
+                CodeGens.AddInstructions(lowestLabel + ":");
+                CodeGens.AddLabel();
+                lowestLabel = CodeGens.GetCurrentLabel();
+                currentLabel = lowestLabel;
+                ParseNextLexem();
+                ParseExpression();
+                CheckSyntax(Lexems.Then);
+                ParseInstructionsSequence();
+                CodeGens.AddInstructions("jmp " + exitLabel);
+                
+            }
+            if(currentLexem== Lexems.Else)
+            {
+                CodeGens.AddInstructions(lowestLabel + ":");
+               // ParseNextLexem();
+                ParseInstructionsSequence();
+            }
+            CheckSyntax(Lexems.EndIf);
+            CodeGenerator.AddInstruction(exitLabel + ":");
+        }
 
         public static void ParseLoop()
         {
@@ -318,23 +349,20 @@ namespace Translation
             string TopLabel = CodeGens.GetCurrentLabel();
             CodeGens.AddLabel();
             string LowLabel = CodeGens.GetCurrentLabel();
-            currentLabel = LowLabel;
+            CodeGens.AddLabel();
+            string Thirdlabel=CodeGens.GetCurrentLabel();
+            currentLabel = Thirdlabel;
+            CodeGens.AddInstructions("jmp " + LowLabel);
             CodeGens.AddInstructions(TopLabel + ":");
             //ParseExpression();
             ParseInstructionsSequence();
-            if (currentLexem != Lexems.While)
-            {
-                Error("Expected While statement");
-            }
-            else
-            {
-                ParseNextLexem();
-                ParseExpression();
-            }
-
-            CodeGens.AddInstructions("jmp " + TopLabel);
+           // 
+            CheckSyntax(Lexems.While);
+            ParseNextLexem();
             CodeGens.AddInstructions(LowLabel + ":");
-
+            ParseExpression();
+            CodeGens.AddInstructions("jmp "+TopLabel);
+            CodeGens.AddInstructions(Thirdlabel+":");
             //{
             //    ParseNextLexem();
             //    CodeGens.AddLabel();
@@ -345,22 +373,39 @@ namespace Translation
             //    ParseExpression();
             //}
         }
+        public static void ParseDoWhile()
+        {
+
+        }
 
         private static void ParsePrintInstruction()
         {
-            // CheckLexems(Lexems.Identificator);
+            // CheckSyntax(Lexems.Identificator);
             ParseNextLexem();
             if (currentLexem == Lexems.Identificator)
             {
                 Identifier X = NameTable.SearchByName(currentName);
-                CodeGens.AddInstructions("push ax");
-                CodeGens.AddInstructions("mov ax," + currentName);
-                CodeGens.AddInstructions("CALL PRINT");
-                CodeGens.AddInstructions("pop ax");
-                ParseNextLexem();
+                if (!X.Equals(new Identifier()))
+                {
+                    CodeGens.AddInstructions("push ax");
+                    CodeGens.AddInstructions("mov ax," + currentName);
+                    CodeGens.AddInstructions("CALL PRINT");
+                    CodeGens.AddInstructions("pop ax");
+                    ParseNextLexem();
+                }
             }
             else
-                Error("Print error");
+                Error("unkown parameter " + currentName);
+        }
+
+        public static void CheckSyntax(Lexems lexemcheck)
+        {
+            if (currentLexem != lexemcheck)
+            {
+                Error(" ожидолос " + lexemcheck);
+            }
+            // else
+            //  ParseNextLexem();
         }
     }
 }
