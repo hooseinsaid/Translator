@@ -73,6 +73,7 @@ namespace Translation
                     currentLexem = Lexems.LessOrEqual;
                     currentName = "<=";
                     Reader.ReadNextSymbol();
+                    return;
                 }
                 else
                 {
@@ -106,18 +107,17 @@ namespace Translation
             }
             else if (Reader.CurSymbol == '>')
             {
+                Reader.ReadNextSymbol();
                 if (Reader.CurSymbol == '=')
                 {
                     currentLexem = Lexems.GreaterOrEqual;
                     currentName = ">=";
                     Reader.ReadNextSymbol();
+                    return;
                 }
-                else
-                {
                     currentLexem = Lexems.Greater;
                     currentName = ">";
-                    Reader.ReadNextSymbol();
-                }
+                   
             }
             else if (Reader.CurSymbol == '(')
             {
@@ -197,7 +197,7 @@ namespace Translation
                 }
             }
             else
-                throw new Exception("Unknown Symbol" + (char)Reader.CurSymbol);
+                throw new Exception("Unknown Symbol " + (char)Reader.CurSymbol);
         }
 
         public static void ParseID()
