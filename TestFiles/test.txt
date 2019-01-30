@@ -1,0 +1,7 @@
+var a,b,c;
+Begin
+a=17;
+b=4;
+c=(a-b)*2+b/4;
+print c;
+end

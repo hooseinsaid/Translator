@@ -1,0 +1,8 @@
+int a,b,c;
+begin
+a=2;
+b=3;
+c = 19;
+b = a+b;
+print b;
+end

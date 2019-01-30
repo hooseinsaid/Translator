@@ -1,0 +1,9 @@
+int a,b;
+begin;
+a=2;
+b=3;
+Do
+b = a+b;
+while(b<=10)
+print b;
+End
