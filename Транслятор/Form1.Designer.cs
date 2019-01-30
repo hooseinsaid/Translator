@@ -33,13 +33,12 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Результат = new System.Windows.Forms.GroupBox();
-            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.OutputRicxhBox = new System.Windows.Forms.RichTextBox();
             this.Исходный_код = new System.Windows.Forms.GroupBox();
             this.input_text = new System.Windows.Forms.RichTextBox();
             this.Состояния_компиляции = new System.Windows.Forms.GroupBox();
-            this.richTextBoxError = new System.Windows.Forms.RichTextBox();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
@@ -85,25 +84,16 @@
             // 
             // compilerToolStripMenuItem
             // 
-            this.compilerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.compileToolStripMenuItem});
             this.compilerToolStripMenuItem.Name = "compilerToolStripMenuItem";
             this.compilerToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.compilerToolStripMenuItem.Text = "Compiler";
-            // 
-            // compileToolStripMenuItem
-            // 
-            this.compileToolStripMenuItem.Name = "compileToolStripMenuItem";
-            this.compileToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.compileToolStripMenuItem.Text = "compile";
-            this.compileToolStripMenuItem.Click += new System.EventHandler(this.compileToolStripMenuItem_Click);
             // 
             // Результат
             // 
             this.Результат.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Результат.AutoSize = true;
-            this.Результат.Controls.Add(this.richTextBoxOutput);
+            this.Результат.Controls.Add(this.OutputRicxhBox);
             this.Результат.Location = new System.Drawing.Point(294, 51);
             this.Результат.Name = "Результат";
             this.Результат.Size = new System.Drawing.Size(270, 313);
@@ -111,14 +101,15 @@
             this.Результат.TabStop = false;
             this.Результат.Text = "Результат";
             // 
-            // richTextBoxOutput
+            // OutputRicxhBox
             // 
-            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxOutput.Location = new System.Drawing.Point(3, 16);
-            this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(264, 294);
-            this.richTextBoxOutput.TabIndex = 0;
-            this.richTextBoxOutput.Text = "";
+            this.OutputRicxhBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OutputRicxhBox.Location = new System.Drawing.Point(3, 16);
+            this.OutputRicxhBox.Name = "OutputRicxhBox";
+            this.OutputRicxhBox.ReadOnly = true;
+            this.OutputRicxhBox.Size = new System.Drawing.Size(264, 294);
+            this.OutputRicxhBox.TabIndex = 0;
+            this.OutputRicxhBox.Text = "";
             // 
             // Исходный_код
             // 
@@ -150,7 +141,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Состояния_компиляции.AutoSize = true;
-            this.Состояния_компиляции.Controls.Add(this.richTextBoxError);
+            this.Состояния_компиляции.Controls.Add(this.richTextBox3);
             this.Состояния_компиляции.Location = new System.Drawing.Point(12, 381);
             this.Состояния_компиляции.Name = "Состояния_компиляции";
             this.Состояния_компиляции.Size = new System.Drawing.Size(552, 179);
@@ -158,15 +149,15 @@
             this.Состояния_компиляции.TabStop = false;
             this.Состояния_компиляции.Text = "Состояния компиляции";
             // 
-            // richTextBoxError
+            // richTextBox3
             // 
-            this.richTextBoxError.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxError.Location = new System.Drawing.Point(3, 16);
-            this.richTextBoxError.Name = "richTextBoxError";
-            this.richTextBoxError.ReadOnly = true;
-            this.richTextBoxError.Size = new System.Drawing.Size(546, 160);
-            this.richTextBoxError.TabIndex = 0;
-            this.richTextBoxError.Text = "";
+            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox3.Location = new System.Drawing.Point(3, 16);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.ReadOnly = true;
+            this.richTextBox3.Size = new System.Drawing.Size(546, 160);
+            this.richTextBox3.TabIndex = 0;
+            this.richTextBox3.Text = "";
             // 
             // openFileDialog1
             // 
@@ -212,14 +203,13 @@
         private System.Windows.Forms.GroupBox Результат;
         private System.Windows.Forms.GroupBox Исходный_код;
         private System.Windows.Forms.GroupBox Состояния_компиляции;
-        private System.Windows.Forms.RichTextBox richTextBoxOutput;
+        private System.Windows.Forms.RichTextBox OutputRicxhBox;
         private System.Windows.Forms.RichTextBox input_text;
-        private System.Windows.Forms.RichTextBox richTextBoxError;
+        private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem compileToolStripMenuItem;
     }
 }
 

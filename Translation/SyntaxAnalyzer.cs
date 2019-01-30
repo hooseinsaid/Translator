@@ -21,6 +21,7 @@ namespace Translation
             Errors.Add(new Error
             {
                 Line = Reader.NLines,
+
                 Position = Reader.PosSimLine,
                 ErrorMessage = ErrorMessage
             });

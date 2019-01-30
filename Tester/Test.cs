@@ -3,15 +3,16 @@ using System.Collections.Generic;
 
 namespace Translation
 {
-    internal class Test
+    class Test
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
-            //  LexicalTest();
-            SyntaxTest();
+           
+            LexicalTest();
+           // syntaxTest();
         }
 
-        private static void SyntaxTest()
+        private static void syntaxTest()
         {
             Reader.Initialize(@"C:\Users\hussa\OneDrive\Apps\Desktop\newtonhor.txt");
             SyntaxAnalyzer.Compile();
@@ -22,24 +23,28 @@ namespace Translation
                 Console.WriteLine(error.ErrorMessage);
             }
             Reader.Close();
-            Console.WriteLine("Work done ?");
             Console.Read();
         }
 
-        private static void LexicalTest()
+        static void LexicalTest()
         {
+
             Reader.Initialize(@"C:\Users\hussa\OneDrive\Apps\Desktop\newtonhor.txt");
             LexicalAnalyzer.Initialize();
             string lexlemename = "";
             LexicalAnalyzer.Lexems lex;
-            while (Reader.CurSymbol != 0)
+            while (Reader.CurSymbol!=0)
             {
                 LexicalAnalyzer.ParseNextLexem();
                 lexlemename = LexicalAnalyzer.currentName;
                 lex = LexicalAnalyzer.currentLexem;
                 Console.WriteLine("string {0} {1} -> {2}", Reader.NLines, lexlemename, lex.ToString());
+
             }
             Console.ReadLine();
+
+
+
 
             //LexicalAnalyzer.Initialize();
             //Reader.Initialize(@"C:\Users\hussa\OneDrive\Apps\Desktop\newtonhor.txt");
@@ -54,6 +59,7 @@ namespace Translation
             //    LexicalAnalyzer.ParseNextLexem();
 
             //}
+
         }
     }
 }
