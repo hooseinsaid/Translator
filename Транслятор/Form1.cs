@@ -68,9 +68,11 @@ namespace Транслятор
 
         private void compileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             try
             {
                 Initialize(filepath != null ? filepath : Filepath(sender, e));
+
                 Translation.SyntaxAnalyzer.Errors.Clear();
                 Translation.SyntaxAnalyzer.Compile();
                 richTextBoxOutput.Clear();

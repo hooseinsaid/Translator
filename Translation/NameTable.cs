@@ -35,6 +35,7 @@ namespace Translation
             return identifier;
         }
 
+
         public static Identifier SearchByName(string name)
         {
             LinkedListNode<Identifier> node = Identifiers.First;

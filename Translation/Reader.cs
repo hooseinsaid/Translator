@@ -15,6 +15,7 @@ namespace Translation
                 CurSymbol = 0;
                 return;
             }
+
             else if (CurSymbol == '\n')
             {
                 NLines++;

@@ -75,6 +75,7 @@ namespace Translation
                     Reader.ReadNextSymbol();
                     return;
                 }
+
                 else
                 {
                     currentName = "<"; currentLexem = Lexems.Less;

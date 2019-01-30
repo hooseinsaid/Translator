@@ -56,7 +56,7 @@
             this.compilerToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(584, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(608, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -104,7 +104,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Результат.AutoSize = true;
             this.Результат.Controls.Add(this.richTextBoxOutput);
-            this.Результат.Location = new System.Drawing.Point(294, 51);
+            this.Результат.Location = new System.Drawing.Point(318, 51);
             this.Результат.Name = "Результат";
             this.Результат.Size = new System.Drawing.Size(270, 313);
             this.Результат.TabIndex = 1;
@@ -129,7 +129,7 @@
             this.Исходный_код.Controls.Add(this.input_text);
             this.Исходный_код.Location = new System.Drawing.Point(12, 51);
             this.Исходный_код.Name = "Исходный_код";
-            this.Исходный_код.Size = new System.Drawing.Size(266, 313);
+            this.Исходный_код.Size = new System.Drawing.Size(290, 313);
             this.Исходный_код.TabIndex = 2;
             this.Исходный_код.TabStop = false;
             this.Исходный_код.Text = "Исходный код";
@@ -140,7 +140,7 @@
             this.input_text.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.input_text.Location = new System.Drawing.Point(3, 16);
             this.input_text.Name = "input_text";
-            this.input_text.Size = new System.Drawing.Size(260, 294);
+            this.input_text.Size = new System.Drawing.Size(284, 294);
             this.input_text.TabIndex = 1;
             this.input_text.Text = "";
             // 
@@ -153,7 +153,7 @@
             this.Состояния_компиляции.Controls.Add(this.richTextBoxError);
             this.Состояния_компиляции.Location = new System.Drawing.Point(12, 381);
             this.Состояния_компиляции.Name = "Состояния_компиляции";
-            this.Состояния_компиляции.Size = new System.Drawing.Size(552, 179);
+            this.Состояния_компиляции.Size = new System.Drawing.Size(576, 179);
             this.Состояния_компиляции.TabIndex = 2;
             this.Состояния_компиляции.TabStop = false;
             this.Состояния_компиляции.Text = "Состояния компиляции";
@@ -164,7 +164,7 @@
             this.richTextBoxError.Location = new System.Drawing.Point(3, 16);
             this.richTextBoxError.Name = "richTextBoxError";
             this.richTextBoxError.ReadOnly = true;
-            this.richTextBoxError.Size = new System.Drawing.Size(546, 160);
+            this.richTextBoxError.Size = new System.Drawing.Size(570, 160);
             this.richTextBoxError.TabIndex = 0;
             this.richTextBoxError.Text = "";
             // 
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 572);
+            this.ClientSize = new System.Drawing.Size(608, 572);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Состояния_компиляции);
             this.Controls.Add(this.Исходный_код);
