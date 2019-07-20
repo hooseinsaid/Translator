@@ -328,6 +328,7 @@ namespace Translation
                 currentLabel = lowestLabel;
                 ParseNextLexem();
                 ParseExpression();
+
                 CheckSyntax(Lexems.Then);
                 ParseInstructionsSequence();
                 CodeGens.AddInstructions("jmp " + exitLabel);
@@ -340,7 +341,7 @@ namespace Translation
                 ParseInstructionsSequence();
             }
             CheckSyntax(Lexems.EndIf);
-            CodeGenerator.AddInstruction(exitLabel + ":");
+            CodeGens.AddInstructions(exitLabel + ":");
         }
 
         public static void ParseLoop()

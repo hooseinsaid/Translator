@@ -7,6 +7,7 @@ namespace Translation
         public static int MAX_NUMBER_STRINGS { get; private set; } = 10000;
         private static int countLabels = 0;
         public static string[] code;
+
         private static int codePointer = 0;
 
         public static void AddInstructions(string instruction)
