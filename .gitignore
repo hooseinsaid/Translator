@@ -29,3 +29,9 @@ Translation/obj/Debug/netstandard2.0/Translation.pdb
 bin.*
 *ConsoleApplication1/obj/*
 Translation/SyntaxAnalyzer.cs
+/Транслятор/bin/Debug/
+/Транслятор/obj/Debug/
+*/Tester/*
+/Translation/
+/Tester/bin/Debug/
+/Tester/bin/Debug/
